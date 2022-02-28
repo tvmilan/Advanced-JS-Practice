@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exception Handeling</title>
+</head>
+<body>
+    <h1> Open console to see errors handeled by Try-catch block<br>& Use of Custom error message.</h1>
+
+    <script>
+
+        try {
+            let hey = 'hey';
+            hey();
+
+        } catch (error) {
+            // error ^ here represent the error caught in the try block
+            
+            console.log('catching error..');
+            console.log(error);
+        }
+
+        console.log(' Custom Error messages');
+
+        // showing custom error message on console
+        function add(x, y) {
+            // if (x is not a number) or (y is not a number)
+            if(!(x instanceof Number) || !(y instanceof Number)){
+                throw new Error('The arguments must be numbers');
+            }
+            return x + y;
+        }
+
+        add('a', 5);
+
+    </script>
+
+
+</body>
+</html>
