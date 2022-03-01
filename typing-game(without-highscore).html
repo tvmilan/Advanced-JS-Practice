@@ -52,15 +52,6 @@
                 margin-right: auto;
                 width: fit-content;
             }
-            ul {
-                padding-left: 0;
-            }
-            .text-center {
-                text-align: center;
-            }
-            .text-center{
-                list-style-type: none;
-            }
             
         </style>
     </head>
@@ -91,18 +82,12 @@
             </section>
         </main>
 
-        <section id="highscore">
-            <h1 class="text-center">My highscores (WPM)</h1>
-            <ul class="text-center" id="highscores"></ul>
-        </section>
-
         <script src="js/story.js"></script>
 
         <script>
             // create a speed typing game
 
             const startGameButton = document.getElementById("button");
-            const highScore = document.getElementById("highscore");
             const input = document.getElementById("input");
             const mainContent = document.getElementById("main-content");
             const statContent = document.getElementById("stats");
@@ -121,7 +106,7 @@
             };
 
 
-            // Get a random word from story
+            // Get a random word from Alice
             function getRandomWord() {
                 return splittedStory[
                     Math.floor(Math.random() * splittedStory.length)
@@ -202,20 +187,6 @@
                     // end the game
                     if (state.timeElapsed === state.gameLength) {
                         alert("Game over. Your WPM is: " + wpmDisplay.textContent);
-
-                        // getting highscores from local storage
-                        const scores = JSON.parse(localStorage.getItem('highscores')) || [];
-
-                        scores.push(wpmDisplay.textContent);
-
-                        // sort from low to high
-                        scores.sort();
-
-                        if(scores.length > 10){
-                            scores.shift();
-                        }
-
-                        localStorage.setItem('highscores', JSON.stringify(scores));
                         // refresh the page
                         window.location.reload();
                     }
@@ -229,8 +200,6 @@
                 input.className = "";
                 // show the stat
                 statContent.className = "";
-                // hide the high score button;
-                highScore.className = "hide"
 
                 // focus cursor on the text field so user can type right away
                 input.focus();
@@ -239,34 +208,6 @@
 
                 startClock();
             });
-        </script>
-
-        <script>
-            const highscores = document.getElementById("highscores");
-
-            function createListItem(content) {
-                const li = document.createElement("li");
-
-                li.textContent = content;
-
-                return li;
-            }
-
-            // retrieve the highscores from local storage. if it is empty, set it to an empty array
-            let scores = JSON.parse(localStorage.getItem("highscores")) || [];
-
-            // rank the score from high to low
-            scores = scores.sort().reverse();
-
-            for (let index = 0; index < scores.length; index++) {
-                // create list item
-                const li = createListItem(
-                    String(index + 1) + ") " + scores[index]
-                );
-
-                // put them in ul
-                highscores.appendChild(li);
-            }
         </script>
     </body>
 </html>
