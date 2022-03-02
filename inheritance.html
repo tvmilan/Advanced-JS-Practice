@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Inheritance</title>
+    </head>
+    <body>
+        <script>
+            class Character {
+                constructor(health, magic) {
+                    this.health = health;
+                    this.magic = magic;
+                }
+
+                walk() {}
+
+                fight() {
+                    console.log("is fighting");
+                }
+            }
+
+            // Inheritance is the concept of extending a base class
+            // ex. the child class has access to all the method and property of the base class
+            class Knight extends Character {
+                constructor(health, magic, skill) {
+                    // super function calls the constructor of base class
+                    super(health, magic);
+                    this.skill = skill;
+                }
+                ride() {}
+
+                charge() {}
+            }
+
+            class Warrior extends Knight {}
+
+            class Mage extends Character {
+                cast() {}
+            }
+
+            const player = new Knight(100, 50);
+            player.fight();
+
+        </script>
+    </body>
+</html>
